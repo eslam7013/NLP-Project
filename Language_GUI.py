@@ -29,7 +29,7 @@ empty_label_1.grid(row=0, column=0)
 #
 # input type parameters
 input_type = StringVar(root)
-input_type.set("Select required type")
+input_type.set("Select Classifiers")
 #
 #
 # def update_input_type_label(in_type):
