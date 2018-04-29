@@ -27,9 +27,9 @@ empty_label_1.grid(row=0, column=0)
 # input_type_label.grid(row=0, column=1, sticky=E)
 #
 #
-# # input type parameters
-# input_type = StringVar(root)
-# input_type.set("Select required type")
+# input type parameters
+input_type = StringVar(root)
+input_type.set("Select required type")
 #
 #
 # def update_input_type_label(in_type):
@@ -37,8 +37,8 @@ empty_label_1.grid(row=0, column=0)
 #     input_type_label.configure(text=in_type + " :")
 #     input_type_label.update()
 #
-# input_type_list = OptionMenu(root, input_type, "Tweet", command=update_input_type_label)
-# input_type_list.grid(row=0, column=2, sticky=E)
+input_type_list = OptionMenu(root, input_type, "NaiveBayes","MaxEntropy")
+input_type_list.grid(row=0, column=2, sticky=E)
 
 # endregion
 
@@ -61,9 +61,12 @@ def submit_data():
 
     # tweet : @mileskimball a second Trump Administration will be in position to attack rural and many urban druggers in Mexico,… https://t.co/dnFF1Pcg4q"
     #if input_type.get() == "Tweet":
-    result = lang.Main(data)
-    #messagebox.showinfo("Result : " , "Sentence : "+data + "\nLanguage : "+result)
-    print(result)
+    result = lang.Main(data,input_type.get())
+    string = ''
+    for obj in result:
+        string += obj[0]+' => '+obj[1]+'\n\n'
+    messagebox.showinfo("Result : " ,string)
+    #print(result)
     return
 
 
