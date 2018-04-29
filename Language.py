@@ -107,9 +107,11 @@ def File_Language_Identification(filename, classifier):
 #endregion
 
 #region Prepare the classifier
-def Main(string):
+def Main(string , classifier_name):
     domain = "text"
-    classifier_name = "MaxEntropy"
+    #classifier_name = "MaxEntropy"
+    #classifier_name = "NaiveBayes"
+
     texts = {}
     pickled_classifier = r'E:\NLP_Project\language_identification_classifier-%s.%s.pickle' % (classifier_name, domain)
 
@@ -125,20 +127,17 @@ def Main(string):
         print ("Will be pickling", pickled_classifier)
 
         train_set = get_train_set (texts)
-        classifier = MaxentClassifier.train(train_set,max_iter=4)
-        #classifier = NaiveBayesClassifier.train (train_set)
+        if (classifier_name == "MaxEntropy"):
+            classifier = MaxentClassifier.train(train_set,max_iter=4)
+        else:
+            classifier = NaiveBayesClassifier.train (train_set)
+
         pickle.dump (classifier, open (pickled_classifier, 'wb'))
     else:
         classifier = pickle.load (open (pickled_classifier, "rb"))
 
     return File_Language_Identification(string, classifier)
 #endregion
-
-
-# string="انا جايلك يا فراج و هحط عليك"
-# print(Main(string),"==>",string)
-
-
 
 
 
